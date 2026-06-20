@@ -1,142 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Umbra Link — Identity, Routing, and Connection Layer</title>
-        <meta name="description" content="Umbra Link is the identity, routing, and connection layer of Umbra-Noesis — linking users, nodes, and devices into a private, local-first mesh for human–AI collaboration."/>
-        <!-- Font Awesome (icons) -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer"/>
-        <!-- Tailwind CDN (matches main site utility classes) -->
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="bg-slate-950 text-slate-100 antialiased">
-        <!-- Page wrapper -->
-        <div class="min-h-screen flex flex-col">
-            <!-- Top bar / nav -->
-            <header class="border-b border-slate-800/70 bg-slate-950/80 backdrop-blur">
-                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
-                    <!-- Brand --><a href="index.html" class="flex items-center gap-2 group"> <div class="h-9 w-9 rounded-xl border border-slate-700 bg-slate-900/80 flex items-center justify-center text-xs font-semibold tracking-tight">
-                            <img src="../assets/img/ChatGPT%20Image%20Dec%206%2C%202025%2C%2002_28_30%20AM.png"/> 
-                        </div> <div class="flex flex-col leading-tight"><span class="text-sm font-semibold tracking-wide text-slate-50 group-hover:text-[#B87333] transition-colors">
-                                Umbra-Noesis </span><span class="text-[11px] text-slate-400">
-                                Umbra Link · Identity & Routing Layer </span>
-                        </div> </a>
-                    <!-- Back to ecosystem pill --><a href="https://umbra-noesis.com" class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1.5 text-xs font-medium text-slate-100 hover:border-[#B87333] hover:text-[#B87333] hover:bg-slate-900 transition-colors"> <i class="fa-solid fa-arrow-left text-[11px]"></i> <span>Back to Umbra-Noesis Ecosystem</span> </a>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Umbra Link — Identity, Routing &amp; Connection Layer</title>
+    <meta name="description" content="Umbra Link is the identity and routing backbone of the Umbra-Noesis ecosystem — linking users, nodes, and devices into a private, local-first mesh."/>
+    <meta property="og:title" content="Umbra Link — Identity, Routing &amp; Connection Layer"/>
+    <meta property="og:description" content="The identity and routing backbone of Umbra-Noesis. Local-first. Private by design."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://umbra-ai.link/"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+        :root {
+            --copper: #B87333;
+            --gold:   #C9940A;
+            --blue:   #00B4D8;
+        }
+
+        body {
+            background-color: #000000;
+            font-family: ui-sans-serif, system-ui, sans-serif;
+        }
+
+        .circuit-hero {
+            background-color: #000000;
+            background-image:
+                linear-gradient(rgba(0,180,216,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,180,216,0.05) 1px, transparent 1px),
+                radial-gradient(ellipse at 8% 60%, rgba(0,180,216,0.09) 0%, transparent 55%),
+                radial-gradient(ellipse at 90% 20%, rgba(185,115,51,0.08) 0%, transparent 55%);
+            background-size: 44px 44px, 44px 44px, 100% 100%, 100% 100%;
+        }
+
+        .bg-card    { background-color: #0D1117; }
+        .bg-surface { background-color: #111827; }
+
+        .glow-copper { box-shadow: 0 0 22px rgba(185,115,51,0.45), 0 0 45px rgba(185,115,51,0.18); }
+        .glow-blue   { box-shadow: 0 0 22px rgba(0,180,216,0.45), 0 0 45px rgba(0,180,216,0.18); }
+
+        .ring-copper {
+            border: 1px solid rgba(185,115,51,0.55);
+            box-shadow: 0 0 14px rgba(185,115,51,0.3), inset 0 0 14px rgba(185,115,51,0.04);
+        }
+        .ring-blue {
+            border: 1px solid rgba(0,180,216,0.5);
+            box-shadow: 0 0 14px rgba(0,180,216,0.3), inset 0 0 14px rgba(0,180,216,0.04);
+        }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: linear-gradient(135deg, #B87333, #9A6128);
+            color: #000; font-weight: 700; font-size: 0.875rem;
+            padding: 0.75rem 1.5rem; border-radius: 0.75rem;
+            transition: all 0.3s ease; text-decoration: none;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #C9940A, #B87333);
+            box-shadow: 0 0 28px rgba(185,115,51,0.65), 0 0 55px rgba(185,115,51,0.25);
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            border: 1px solid rgba(185,115,51,0.45); color: #B87333;
+            font-weight: 600; font-size: 0.875rem;
+            padding: 0.75rem 1.5rem; border-radius: 0.75rem;
+            transition: all 0.3s ease; text-decoration: none; background: transparent;
+        }
+        .btn-ghost:hover {
+            border-color: #B87333;
+            box-shadow: 0 0 22px rgba(185,115,51,0.4), 0 0 44px rgba(185,115,51,0.15);
+            color: #C9940A; background: rgba(185,115,51,0.07);
+            transform: translateY(-1px);
+        }
+
+        .btn-nav {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            border: 1px solid rgba(185,115,51,0.3); color: #B87333;
+            font-weight: 500; font-size: 0.75rem;
+            padding: 0.375rem 0.875rem; border-radius: 9999px;
+            transition: all 0.25s ease; text-decoration: none; background: transparent;
+        }
+        .btn-nav:hover {
+            border-color: #B87333;
+            box-shadow: 0 0 16px rgba(185,115,51,0.35);
+            color: #C9940A;
+        }
+
+        .card {
+            background: #0D1117;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            border-color: rgba(0,180,216,0.3);
+            box-shadow: 0 0 22px rgba(0,180,216,0.1), 0 8px 32px rgba(0,0,0,0.45);
+            transform: translateY(-2px);
+        }
+        .card-copper:hover {
+            border-color: rgba(185,115,51,0.35);
+            box-shadow: 0 0 22px rgba(185,115,51,0.1), 0 8px 32px rgba(0,0,0,0.45);
+        }
+
+        .text-copper      { color: #B87333; }
+        .text-blue        { color: #00B4D8; }
+        .text-glow-copper { color: #B87333; text-shadow: 0 0 24px rgba(185,115,51,0.5); }
+        .text-glow-blue   { color: #00B4D8; text-shadow: 0 0 24px rgba(0,180,216,0.5); }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,180,216,0.3), transparent);
+        }
+
+        .nav-bar {
+            border-bottom: 1px solid rgba(0,180,216,0.1);
+            box-shadow: 0 1px 24px rgba(0,180,216,0.04);
+        }
+
+        .pulse-dot {
+            display: inline-block; height: 0.5rem; width: 0.5rem;
+            border-radius: 9999px; background: #00B4D8;
+            animation: pulse-blue 2.2s infinite;
+        }
+        @keyframes pulse-blue {
+            0%   { box-shadow: 0 0 0 0 rgba(0,180,216,0.55); }
+            70%  { box-shadow: 0 0 0 7px rgba(0,180,216,0); }
+            100% { box-shadow: 0 0 0 0 rgba(0,180,216,0); }
+        }
+
+        .badge-copper {
+            background: rgba(185,115,51,0.12); border: 1px solid rgba(185,115,51,0.35);
+            color: #B87333; font-size: 0.65rem; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            padding: 0.2rem 0.65rem; border-radius: 9999px;
+        }
+        .badge-blue {
+            background: rgba(0,180,216,0.1); border: 1px solid rgba(0,180,216,0.3);
+            color: #00B4D8; font-size: 0.65rem; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            padding: 0.2rem 0.65rem; border-radius: 9999px;
+        }
+
+        .font-display { font-family: 'Chakra Petch', ui-sans-serif, sans-serif; }
+        .font-hud     { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+
+        /* mesh node decorative line */
+        .mesh-line {
+            position: relative;
+        }
+        .mesh-line::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 50%;
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, rgba(0,180,216,0.4), rgba(0,180,216,0.1), transparent);
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="text-slate-100 antialiased">
+
+<!-- ── Nav ── -->
+<header class="nav-bar sticky top-0 z-50" style="background: rgba(0,0,0,0.88); backdrop-filter: blur(14px);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div style="width:36px;height:36px;border-radius:0.6rem;overflow:hidden;border:1px solid rgba(0,180,216,0.35);">
+                <img src="assets/img/umbra-link-logo.png" alt="Umbra Link" style="width:100%;height:100%;object-fit:cover;"/>
+            </div>
+            <div class="flex flex-col leading-tight">
+                <span class="font-display font-semibold text-sm tracking-wide text-slate-50 group-hover:text-blue-400 transition-colors" style="color:#00B4D8;">Umbra Link</span>
+                <span class="font-hud text-[10px] text-slate-500 tracking-widest uppercase">Identity &amp; Routing Layer</span>
+            </div>
+        </a>
+        <nav class="flex items-center gap-2">
+            <a href="https://eve-systems.com" class="btn-nav hidden sm:inline-flex">
+                <i class="fa-solid fa-microchip text-[10px]"></i> EVE Systems
+            </a>
+            <a href="https://umbra-noesis.com" class="btn-nav">
+                <i class="fa-solid fa-arrow-left text-[10px]"></i> Umbra-Noesis
+            </a>
+        </nav>
+    </div>
+</header>
+
+<!-- ── Hero ── -->
+<section class="circuit-hero py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+            <!-- Left: copy -->
+            <div>
+                <p class="font-hud text-xs tracking-[0.28em] uppercase mb-4" style="color:rgba(0,180,216,0.8);">
+                    Umbra-Noesis · Infrastructure Layer
+                </p>
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.05] tracking-tight text-slate-50 mb-6">
+                    Identity.<br/>
+                    <span class="text-glow-blue">Routing.</span><br/>
+                    <span class="text-glow-copper">Connection.</span>
+                </h1>
+                <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 max-w-lg">
+                    Umbra Link is the backbone that ties the Umbra-Noesis stack together — managing who is present, which nodes are reachable, and how they communicate in a <span style="color:#00B4D8;">private, local-first mesh</span>.
+                </p>
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <a href="https://eve-systems.com" class="btn-primary font-display">
+                        <i class="fa-solid fa-download text-sm"></i> Get EVE OS
+                    </a>
+                    <a href="https://umbra-noesis.com" class="btn-ghost font-display">
+                        <i class="fa-solid fa-layer-group text-sm"></i> Full Ecosystem
+                    </a>
                 </div>
-            </header>
-            <!-- Main content -->
-            <main class="flex-1">
-                <section class="py-10 sm:py-14">
-                    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <!-- Hero -->
-                        <div class="max-w-3xl">
-                            <p class="text-xs font-semibold tracking-[0.22em] text-[#B87333] uppercase mb-3">
-                                Umbra Link </p>
-                            <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-slate-50 mb-4">
-                                Identity, Routing, and Connection Layer </h1>
-                            <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
-                                Umbra Link is the <span class="text-[#B87333]">identity and routing backbone</span> of Umbra-Noesis. It’s how users, nodes, and devices
-                                discover each other, authenticate, and stay connected in a <span class="text-[#B87333]">local-first, privacy-anchored mesh</span>. </p>
-                            <div class="flex flex-wrap gap-3 mb-8"><span class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/90 px-3 py-1 text-xs font-medium text-slate-200"> <i class="fa-solid fa-fingerprint text-[11px]"></i>
-                                    Node + user identity </span><span class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/90 px-3 py-1 text-xs font-medium text-slate-200"> <i class="fa-solid fa-route text-[11px]"></i>
-                                    Local-first routing </span><span class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/90 px-3 py-1 text-xs font-medium text-slate-200"> <i class="fa-solid fa-link text-[11px]"></i>
-                                    Secure multi-device links </span>
-                            </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="badge-blue"><i class="fa-solid fa-fingerprint mr-1"></i>Node Identity</span>
+                    <span class="badge-blue"><i class="fa-solid fa-route mr-1"></i>Local-First Routing</span>
+                    <span class="badge-copper"><i class="fa-solid fa-lock mr-1"></i>Private by Design</span>
+                </div>
+            </div>
+
+            <!-- Right: logo with rings -->
+            <div class="flex items-center justify-center lg:justify-end">
+                <div class="relative flex items-center justify-center" style="width:280px;height:280px;">
+                    <!-- outer ring -->
+                    <div class="ring-blue absolute inset-0" style="border-radius:1.5rem;"></div>
+                    <!-- inner ring -->
+                    <div class="ring-copper absolute" style="inset:10px;border-radius:1.25rem;"></div>
+                    <!-- logo -->
+                    <img
+                        src="assets/img/umbra-link-logo.png"
+                        alt="Umbra Link"
+                        style="width:200px;height:200px;object-fit:contain;border-radius:1rem;position:relative;z-index:1;"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Status strip ── -->
+<div style="background:#050508;border-top:1px solid rgba(0,180,216,0.1);border-bottom:1px solid rgba(0,180,216,0.1);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center gap-x-8 gap-y-2">
+        <div class="flex items-center gap-2">
+            <span class="pulse-dot"></span>
+            <span class="font-hud text-xs text-slate-300">Identity layer — active in EVE OS</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full" style="background:rgba(0,180,216,0.4);"></span>
+            <span class="font-hud text-xs text-slate-400">Connection Codes — in development</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full" style="background:rgba(185,115,51,0.4);"></span>
+            <span class="font-hud text-xs text-slate-400">Mesh Routing — roadmap</span>
+        </div>
+    </div>
+</div>
+
+<!-- ── What is Umbra Link ── -->
+<section class="py-16 sm:py-20" style="background:#000000;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-12">
+            <p class="font-hud text-xs tracking-[0.22em] uppercase mb-3 text-copper">Overview</p>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-50 mb-4">The layer below everything else</h2>
+            <p class="text-slate-300 leading-relaxed">
+                Every component in the Umbra-Noesis stack — EVE OS, EVAA, PCe hardware — needs to know <em>who</em> is operating it and <em>where</em> other nodes are. Umbra Link is where that context lives. It defines identity, resolves location, and manages secure communication between participants without routing anything through a cloud intermediary.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- User Identity -->
+            <div class="card card-copper p-6">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(185,115,51,0.12);border:1px solid rgba(185,115,51,0.25);">
+                    <i class="fa-solid fa-user text-copper"></i>
+                </div>
+                <h3 class="font-display font-semibold text-slate-50 mb-2">User Identity</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    A human-facing identity that persists across nodes. The system knows who it is working with — not just which machine is currently active.
+                </p>
+            </div>
+
+            <!-- Node Identity -->
+            <div class="card p-6">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(0,180,216,0.1);border:1px solid rgba(0,180,216,0.25);">
+                    <i class="fa-solid fa-server text-blue"></i>
+                </div>
+                <h3 class="font-display font-semibold text-slate-50 mb-2">Node Identity</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Each machine — workstations, laptops, PCe kits, mobile rigs — carries a unique Node ID. Umbra Link tracks which nodes are reachable and what their capabilities are.
+                </p>
+            </div>
+
+            <!-- Connection Codes -->
+            <div class="card p-6">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(0,180,216,0.1);border:1px solid rgba(0,180,216,0.25);">
+                    <i class="fa-solid fa-link text-blue"></i>
+                </div>
+                <h3 class="font-display font-semibold text-slate-50 mb-2">Connection Codes</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    One shareable code to link trusted devices and locations into a unified private mesh — home lab, field unit, or remote node — without a central relay.
+                    <span class="badge-blue ml-1" style="font-size:0.58rem;">In Development</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider max-w-6xl mx-auto"></div>
+
+<!-- ── How it fits ── -->
+<section class="py-16 sm:py-20" style="background:#000000;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+            <!-- Left: Integration points -->
+            <div>
+                <p class="font-hud text-xs tracking-[0.22em] uppercase mb-3 text-blue">Ecosystem Integration</p>
+                <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-50 mb-6">Sits underneath every layer</h2>
+                <div class="space-y-4">
+
+                    <div class="flex gap-4 p-4 rounded-xl" style="background:#0D1117;border:1px solid rgba(255,255,255,0.05);">
+                        <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style="background:rgba(185,115,51,0.1);border:1px solid rgba(185,115,51,0.2);">
+                            <i class="fa-solid fa-microchip text-sm text-copper"></i>
                         </div>
-                        <!-- Status / Updates (lightweight, no CMS) -->
-                        <div class="mt-2 mb-6">
-                            <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-4 sm:p-5">
-                                <p class="text-xs font-semibold tracking-[0.22em] text-[#B87333] uppercase mb-2">
-      Project Status </p>
-                                <p class="text-sm sm:text-base text-slate-200 mb-1">
-      Available — Linux release </p>
-                                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-      EVAA local AI assistant available for Linux. Updated June 2026. </p>
-                            </div>
-                        </div>
-                        <!-- Two-column content -->
-                        <div class="grid gap-8 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] mt-4">
-                            <!-- Left: explanation -->
-                            <div class="space-y-6">
-                                <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-lg shadow-black/40">
-                                    <h2 class="text-lg sm:text-xl font-semibold text-slate-50 mb-3">
-                                        What is Umbra Link? </h2>
-                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-3">
-                                        Umbra Link is the <span class="text-[#B87333]">identity and connection layer</span> that sits under the entire Umbra-Noesis stack.
-                                        It defines how every person, node, and device is represented, and how those identities connect across: </p>
-                                    <ul class="list-disc list-inside text-sm sm:text-base text-slate-300 space-y-1.5">
-                                        <li>Local-first networks (home labs, boats, cabins, mobile rigs).</li>
-                                        <li>Home computers, laptops, workstations, and future supported hardware.</li>
-                                        <li>Selective, consent-based remote links when cloud or WAN is required.</li>
-                                    </ul>
-                                </div>
-                                <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 sm:p-6">
-                                    <h3 class="text-sm font-semibold text-slate-100 mb-2">
-                                        Identity inside the ecosystem </h3>
-                                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-3">
-                                        Umbra Link gives each actor in the system a structured identity: <span class="text-[#B87333]">User IDs</span>, <span class="text-[#B87333]">Node IDs</span>, and eventually <span class="text-[#B87333]">Connection Codes</span> that bind them together with a clear trust posture. </p>
-                                    <div class="grid gap-3 sm:grid-cols-3 text-xs sm:text-sm">
-                                        <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-3">
-                                            <p class="font-semibold text-slate-100 mb-1">User ID</p>
-                                            <p class="text-slate-300">
-                                                A human-facing identity that defines who the system is working with, not just which machine is active. </p>
-                                        </div>
-                                        <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-3">
-                                            <p class="font-semibold text-slate-100 mb-1">Node ID</p>
-                                            <p class="text-slate-300">
-                                                A unique identity for each Umbra-Noesis node: Genesis, MobileCore, PCe kits, future racks, and remote units. </p>
-                                        </div>
-                                        <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-3">
-                                            <p class="font-semibold text-slate-100 mb-1">Connection Code</p>
-                                            <p class="text-slate-300">
-                                                A personal, shareable code for linking trusted devices and locations into the same private mesh (future feature). </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Right: roadmap / cards -->
-                            <aside class="space-y-4">
-                                <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-lg shadow-black/30">
-                                    <h2 class="text-sm sm:text-base font-semibold text-slate-50 mb-2">
-                                        Umbra Link Roadmap (High Level) </h2>
-                                    <ul class="text-xs sm:text-sm text-slate-300 space-y-2">
-                                        <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-[#B87333]"></span><span> <span class="font-semibold text-slate-100">Identity Schema</span> — formalize User ID and Node ID specs, aligned with AACP for message binding. </span>
-                                        </li>
-                                        <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-[#B87333]"></span><span> <span class="font-semibold text-slate-100">Connection Codes</span> — one personal code to link home rigs, field units, and future PCe systems into a unified mesh. </span>
-                                        </li>
-                                        <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-[#B87333]"></span><span> <span class="font-semibold text-slate-100">Mesh Routing & Sync</span> — rules for how nodes discover each other, sync selectively, and stay resilient when offline. </span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 sm:p-5">
-                                    <h3 class="text-xs font-semibold tracking-[0.22em] text-[#B87333] uppercase mb-2">
-                                        Integration Points </h3>
-                                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-3">
-                                        Umbra Link sits underneath and between the rest of the Umbra-Noesis ecosystem: </p>
-                                    <ul class="text-xs sm:text-sm text-slate-300 space-y-1.5">
-                                        <li>EVE OS as the platform layer that hosts the link services.</li>
-                                        <li>EVAA Cognition as the node-level AI that understands who it’s talking to and from which node.</li>
-                                        <li>PCe Systems as the documented hardware profiles that Umbra Link binds into a single environment.</li>
-                                        <li>EVE Systems as the UI layer that surfaces identities, sessions, and active links to the human.</li>
-                                    </ul>
-                                    <p class="text-[11px] text-slate-500 mt-3">
-                                        This page is an early structural skeleton. Final specs, node-linking behaviors, and public-facing APIs will be defined as Umbra-Noesis approaches external release. </p>
-                                </div>
-                            </aside>
+                        <div>
+                            <p class="font-display font-semibold text-sm text-slate-50 mb-1">EVE OS</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">The platform layer that hosts Umbra Link services. Node identity and routing run on the OS itself — no external service required.</p>
                         </div>
                     </div>
-                </section>
-            </main>
-            <!-- Footer -->
-            <footer class="border-t border-slate-900 bg-slate-950/90">
-                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-                    <p class="text-[11px] text-slate-500">
-                        Umbra-Noesis · Umbra Link — Identity, Routing, and Connection Layer </p>
-                    <p class="text-[11px] text-slate-500">
-                        Part of the private Umbra-Noesis human–AI ecosystem. </p>
+
+                    <div class="flex gap-4 p-4 rounded-xl" style="background:#0D1117;border:1px solid rgba(255,255,255,0.05);">
+                        <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style="background:rgba(0,180,216,0.1);border:1px solid rgba(0,180,216,0.2);">
+                            <i class="fa-solid fa-brain text-sm text-blue"></i>
+                        </div>
+                        <div>
+                            <p class="font-display font-semibold text-sm text-slate-50 mb-1">EVAA Cognition</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">The local AI layer reads identity context from Umbra Link — it knows who it is talking to and from which node, enabling structured, governed responses.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-4 rounded-xl" style="background:#0D1117;border:1px solid rgba(255,255,255,0.05);">
+                        <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style="background:rgba(185,115,51,0.1);border:1px solid rgba(185,115,51,0.2);">
+                            <i class="fa-solid fa-hard-drive text-sm text-copper"></i>
+                        </div>
+                        <div>
+                            <p class="font-display font-semibold text-sm text-slate-50 mb-1">PCe Systems</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Documented hardware profiles — workstations, kits, mobile rigs — that Umbra Link binds into a single coherent environment regardless of physical location.</p>
+                        </div>
+                    </div>
+
                 </div>
-            </footer>
+            </div>
+
+            <!-- Right: Roadmap -->
+            <div>
+                <p class="font-hud text-xs tracking-[0.22em] uppercase mb-3 text-copper">Roadmap</p>
+                <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-50 mb-6">What's being built</h2>
+                <div class="space-y-5">
+
+                    <div class="relative pl-6">
+                        <span class="absolute left-0 top-1.5 w-2 h-2 rounded-full" style="background:#B87333;box-shadow:0 0 8px rgba(185,115,51,0.6);"></span>
+                        <p class="font-display font-semibold text-sm text-slate-100 mb-1">Identity Schema</p>
+                        <p class="text-xs text-slate-400 leading-relaxed">Formalize User ID and Node ID specifications, aligned with AACP protocol for structured message binding across nodes.</p>
+                        <span class="badge-copper mt-2 inline-block">Active</span>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="relative pl-6">
+                        <span class="absolute left-0 top-1.5 w-2 h-2 rounded-full" style="background:rgba(0,180,216,0.5);"></span>
+                        <p class="font-display font-semibold text-sm text-slate-100 mb-1">Connection Codes</p>
+                        <p class="text-xs text-slate-400 leading-relaxed">One personal code to link home rigs, field units, and PCe systems into a unified mesh. No account, no cloud relay.</p>
+                        <span class="badge-blue mt-2 inline-block">In Development</span>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="relative pl-6">
+                        <span class="absolute left-0 top-1.5 w-2 h-2 rounded-full" style="background:rgba(255,255,255,0.15);"></span>
+                        <p class="font-display font-semibold text-sm text-slate-100 mb-1">Mesh Routing &amp; Sync</p>
+                        <p class="text-xs text-slate-400 leading-relaxed">Rules for how nodes discover each other, sync selectively, and stay resilient when one node goes offline or changes network.</p>
+                        <span class="badge-copper mt-2 inline-block" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);color:#9ca3af;">Roadmap</span>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </body>
+    </div>
+</section>
+
+<!-- ── Principle callout ── -->
+<section style="background:#050508;border-top:1px solid rgba(0,180,216,0.08);border-bottom:1px solid rgba(0,180,216,0.08);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
+        <p class="font-hud text-xs tracking-[0.28em] uppercase mb-4" style="color:rgba(0,180,216,0.7);">Design Principle</p>
+        <p class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-slate-50 max-w-3xl mx-auto leading-snug">
+            Local-first. <span class="text-glow-blue">Consent-based.</span> <span class="text-glow-copper">No cloud required.</span>
+        </p>
+        <p class="text-slate-400 mt-4 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+            Umbra Link never phones home. Identity and routing live on your hardware. Remote connections happen only when explicitly authorized — and only between trusted participants.
+        </p>
+    </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer style="background:#000000;border-top:1px solid rgba(0,180,216,0.07);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <img src="assets/img/umbra-link-logo.png" alt="Umbra Link" style="width:28px;height:28px;object-fit:contain;opacity:0.7;"/>
+                <div>
+                    <p class="font-display font-semibold text-sm text-slate-300">Umbra Link</p>
+                    <p class="font-hud text-[10px] text-slate-600 tracking-widest uppercase">A Division of Umbra-Noesis LLC</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://umbra-noesis.com" class="font-hud text-xs text-slate-500 hover:text-copper transition-colors">Umbra-Noesis</a>
+                <span class="text-slate-700">·</span>
+                <a href="https://eve-systems.com" class="font-hud text-xs text-slate-500 hover:text-copper transition-colors">EVE Systems</a>
+                <span class="text-slate-700">·</span>
+                <a href="https://evaa-cognition.com" class="font-hud text-xs text-slate-500 hover:text-copper transition-colors">EVAA</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
 </html>
